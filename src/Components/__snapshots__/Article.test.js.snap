@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Article component snapshot 1 1`] = `ShallowWrapper {}`;
+
+exports[`Article component snapshot 2 1`] = `ShallowWrapper {}`;
