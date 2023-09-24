@@ -1,0 +1,35 @@
+// ListComponent.js
+import React from 'react';
+
+const ListComponent = ({ items }) => {
+  return (
+    <ul>
+      {items.map((item, index) => (
+        <li key={index}>{item}</li>
+      ))}
+    </ul>
+  );
+};
+
+export default ListComponent;
+
+
+// ListComponent.test.js
+import React from 'react';
+import { shallow } from 'enzyme';
+import ListComponent from './ListComponent';
+
+describe('ListComponent', () => {
+  it('renders a list of items', () => {
+    const items = ['Item 1', 'Item 2', 'Item 3'];
+    const wrapper = shallow(<ListComponent items={items} />);
+    
+    // Ensure that the component renders the correct number of <li> elements.
+    expect(wrapper.find('li')).toHaveLength(items.length);
+    
+    // Check if the text content of each <li> matches the items in the prop array.
+    items.forEach((item, index) => {
+      expect(wrapper.find('li').at(index).text()).toEqual(item);
+    });
+  });
+});

@@ -1,0 +1,63 @@
+import React from 'react';
+
+const TernaryComponent = ({ showContent }) => {
+  return (
+    <div>
+      {showContent ? (
+        <p>Show this content</p>
+      ) : (
+        <p>Show other content</p>
+      )}
+
+      {showContent ? (
+        <p>Show additional content 1</p>
+      ) : (
+        <p>Show other additional content 1</p>
+      )}
+
+      {showContent ? (
+        <p>Show additional content 2</p>
+      ) : (
+        <p>Show other additional content 2</p>
+      )}
+
+      {showContent ? (
+        <p>Show additional content 3</p>
+      ) : (
+        <p>Show other additional content 3</p>
+      )}
+
+      {showContent ? (
+        <p>Show additional content 4</p>
+      ) : (
+        <p>Show other additional content 4</p>
+      )}
+    </div>
+  );
+};
+
+export default TernaryComponent;
+
+
+
+import React from 'react';
+import { shallow } from 'enzyme';
+import TernaryComponent from './TernaryComponent';
+
+describe('TernaryComponent', () => {
+  it('renders content based on the showContent prop', () => {
+    const wrapper1 = shallow(<TernaryComponent showContent={true} />);
+    expect(wrapper1.find('p').at(0).text()).toEqual('Show this content');
+    expect(wrapper1.find('p').at(1).text()).toEqual('Show additional content 1');
+    expect(wrapper1.find('p').at(2).text()).toEqual('Show additional content 2');
+    expect(wrapper1.find('p').at(3).text()).toEqual('Show additional content 3');
+    expect(wrapper1.find('p').at(4).text()).toEqual('Show additional content 4');
+
+    const wrapper2 = shallow(<TernaryComponent showContent={false} />);
+    expect(wrapper2.find('p').at(0).text()).toEqual('Show other content');
+    expect(wrapper2.find('p').at(1).text()).toEqual('Show other additional content 1');
+    expect(wrapper2.find('p').at(2).text()).toEqual('Show other additional content 2');
+    expect(wrapper2.find('p').at(3).text()).toEqual('Show other additional content 3');
+    expect(wrapper2.find('p').at(4).text()).toEqual('Show other additional content 4');
+  });
+});

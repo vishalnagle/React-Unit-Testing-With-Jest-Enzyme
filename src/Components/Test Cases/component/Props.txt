@@ -1,0 +1,26 @@
+// PropsComponent.js
+import React from 'react';
+
+const PropsComponent = ({ message }) => {
+  return <p>{message}</p>;
+};
+
+export default PropsComponent;
+
+
+// PropsComponent.test.js
+import React from 'react';
+import { shallow } from 'enzyme';
+import PropsComponent from './PropsComponent';
+
+describe('PropsComponent', () => {
+  it('renders the message prop', () => {
+    const message1 = 'Hello, World!';
+    const wrapper1 = shallow(<PropsComponent message={message1} />);
+    expect(wrapper1.find('p').text()).toEqual(message1);
+    
+    const message2 = 'Testing Props';
+    const wrapper2 = shallow(<PropsComponent message={message2} />);
+    expect(wrapper2.find('p').text()).toEqual(message2);
+  });
+});
